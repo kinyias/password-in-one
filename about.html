@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Password Derivation Tool</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>ℹ️ About</h1>
+        <div class="language-toggle">
+          <button id="langEn" class="lang-btn active">English</button>
+          <button id="langVi" class="lang-btn">Tiếng Việt</button>
+        </div>
+      </header>
+
+      <nav class="nav-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="guide.html">📖 Guide</a>
+        <a href="about.html" class="active">ℹ️ About</a>
+      </nav>
+
+      <!-- English Content -->
+      <div id="content-en" class="about-content">
+        <section class="about-section">
+          <h2>🎯 Purpose</h2>
+          <p>
+            The Password Derivation Tool is designed to help you create and
+            manage strong, unique passwords for all your online accounts without
+            the need to remember dozens of different passwords or rely on
+            cloud-based password managers.
+          </p>
+          <p>
+            By using cryptographic algorithms, this tool generates deterministic
+            passwords - meaning you can recreate the same password anytime,
+            anywhere, as long as you remember your master password and the site
+            name.
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2>🔐 How It Works</h2>
+          <p>
+            The tool uses
+            <strong>PBKDF2 (Password-Based Key Derivation Function 2)</strong>
+            with SHA-256 hashing algorithm to derive passwords from your inputs:
+          </p>
+
+          <div class="tech-details">
+            <h3>Technical Process:</h3>
+            <ol>
+              <li>
+                <strong>Input Combination:</strong> Your master password and
+                optional secret key are combined
+              </li>
+              <li>
+                <strong>Salt Creation:</strong> The site name and version are
+                used as a cryptographic salt
+              </li>
+              <li>
+                <strong>Key Derivation:</strong> PBKDF2 runs 100,000 iterations
+                to derive a 256-bit key
+              </li>
+              <li>
+                <strong>Character Mapping:</strong> The derived key is mapped to
+                your selected character sets
+              </li>
+              <li>
+                <strong>Password Generation:</strong> A deterministic password
+                is created with your specified length
+              </li>
+            </ol>
+          </div>
+
+          <div class="formula">
+            <code>
+              Input = masterPassword + "|" + secretKey<br />
+              Salt = siteName + "|" + version<br />
+              DerivedKey = PBKDF2(Input, Salt, 100000, SHA-256, 256 bits)<br />
+              Password = MapToCharset(DerivedKey, charsets, length)
+            </code>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>🛡️ Security Principles</h2>
+          <ul class="security-list">
+            <li>
+              <strong>Zero Knowledge:</strong> No data is ever sent to any
+              server or stored anywhere
+            </li>
+            <li>
+              <strong>Client-Side Only:</strong> All cryptographic operations
+              happen in your browser
+            </li>
+            <li>
+              <strong>No Dependencies:</strong> Uses only native Web Crypto API
+              - no external libraries
+            </li>
+            <li>
+              <strong>Deterministic:</strong> Same inputs always produce the
+              same output
+            </li>
+            <li>
+              <strong>Strong Cryptography:</strong> Industry-standard PBKDF2
+              with 100,000 iterations
+            </li>
+            <li>
+              <strong>No Persistence:</strong> Nothing is saved to localStorage,
+              cookies, or any storage
+            </li>
+            <li>
+              <strong>Open Source:</strong> All code is visible and can be
+              audited
+            </li>
+          </ul>
+        </section>
+
+        <section class="about-section">
+          <h2>✨ Features</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <h3>🔑 Master Password</h3>
+              <p>
+                One password to rule them all - the only one you need to
+                remember
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>🌶️ Secret Key</h3>
+              <p>
+                Optional additional security layer (pepper) for extra protection
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>🔄 Version Control</h3>
+              <p>Easily rotate passwords by incrementing the version number</p>
+            </div>
+            <div class="feature-item">
+              <h3>⚙️ Customizable</h3>
+              <p>
+                Choose password length and character sets to meet any
+                requirement
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>📱 Portable</h3>
+              <p>Works on any device with a modern web browser</p>
+            </div>
+            <div class="feature-item">
+              <h3>🚫 No Internet</h3>
+              <p>Works completely offline - no internet connection needed</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>⚠️ Important Considerations</h2>
+          <div class="warning-box">
+            <h3>Advantages:</h3>
+            <ul>
+              <li>
+                ✅ No cloud storage - your master password never leaves your
+                device
+              </li>
+              <li>✅ Works offline - no internet required</li>
+              <li>✅ Portable - same password on any device</li>
+              <li>✅ Free and open source</li>
+              <li>✅ No account or registration needed</li>
+            </ul>
+
+            <h3>Limitations:</h3>
+            <ul>
+              <li>
+                ⚠️ If you forget your master password, there's no recovery
+              </li>
+              <li>
+                ⚠️ You must remember your master password, secret key, and site
+                naming convention
+              </li>
+              <li>⚠️ Only use on devices you trust</li>
+              <li>
+                ⚠️ Not suitable for shared accounts where others need the
+                password
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>🌐 Browser Compatibility</h2>
+          <p>
+            This tool works on all modern browsers that support the Web Crypto
+            API:
+          </p>
+          <ul class="browser-list">
+            <li>✅ Chrome 37+</li>
+            <li>✅ Firefox 34+</li>
+            <li>✅ Safari 11+</li>
+            <li>✅ Edge 79+</li>
+            <li>✅ Opera 24+</li>
+          </ul>
+        </section>
+
+        <section class="about-section">
+          <h2>📄 License & Privacy</h2>
+          <p>
+            <strong>Privacy:</strong> This tool collects no data, uses no
+            analytics, and makes no network requests. Everything happens locally
+            in your browser.
+          </p>
+          <p>
+            <strong>License:</strong> This is free and open-source software. You
+            can view, modify, and distribute the code freely.
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2>💬 Feedback & Support</h2>
+          <p>
+            This tool is provided as-is for personal use. While we strive for
+            security and reliability, please use it at your own discretion and
+            always maintain backups of important passwords.
+          </p>
+        </section>
+      </div>
+
+      <!-- Vietnamese Content -->
+      <div id="content-vi" class="about-content" style="display: none">
+        <section class="about-section">
+          <h2>🎯 Mục Đích</h2>
+          <p>
+            Công cụ Tạo Mật Khẩu được thiết kế để giúp bạn tạo và quản lý mật
+            khẩu mạnh, độc nhất cho tất cả tài khoản trực tuyến của bạn mà không
+            cần nhớ hàng chục mật khẩu khác nhau hoặc phụ thuộc vào trình quản
+            lý mật khẩu đám mây.
+          </p>
+          <p>
+            Bằng cách sử dụng thuật toán mã hóa, công cụ này tạo mật khẩu xác
+            định - nghĩa là bạn có thể tạo lại cùng một mật khẩu bất cứ lúc nào,
+            bất cứ nơi đâu, miễn là bạn nhớ mật khẩu chính và tên trang web.
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2>🔐 Cách Hoạt Động</h2>
+          <p>
+            Công cụ sử dụng
+            <strong>PBKDF2 (Hàm Tạo Khóa Dựa Trên Mật Khẩu 2)</strong> với thuật
+            toán băm SHA-256 để tạo mật khẩu từ đầu vào của bạn:
+          </p>
+
+          <div class="tech-details">
+            <h3>Quy Trình Kỹ Thuật:</h3>
+            <ol>
+              <li>
+                <strong>Kết Hợp Đầu Vào:</strong> Mật khẩu chính và khóa bí mật
+                tùy chọn được kết hợp
+              </li>
+              <li>
+                <strong>Tạo Salt:</strong> Tên trang web và phiên bản được sử
+                dụng làm salt mã hóa
+              </li>
+              <li>
+                <strong>Tạo Khóa:</strong> PBKDF2 chạy 100,000 lần lặp để tạo
+                khóa 256-bit
+              </li>
+              <li>
+                <strong>Ánh Xạ Ký Tự:</strong> Khóa được tạo ra được ánh xạ vào
+                bộ ký tự bạn chọn
+              </li>
+              <li>
+                <strong>Tạo Mật Khẩu:</strong> Một mật khẩu xác định được tạo
+                với độ dài bạn chỉ định
+              </li>
+            </ol>
+          </div>
+
+          <div class="formula">
+            <code>
+              Đầu vào = mậtKhẩuChính + "|" + khóaBíMật<br />
+              Salt = tênTrang + "|" + phiênBản<br />
+              KhóaTạoRa = PBKDF2(Đầu vào, Salt, 100000, SHA-256, 256 bits)<br />
+              MậtKhẩu = ÁnhXạVàoBộKýTự(KhóaTạoRa, bộKýTự, độDài)
+            </code>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>🛡️ Nguyên Tắc Bảo Mật</h2>
+          <ul class="security-list">
+            <li>
+              <strong>Không Biết Gì:</strong> Không có dữ liệu nào được gửi đến
+              máy chủ hoặc lưu trữ ở bất cứ đâu
+            </li>
+            <li>
+              <strong>Chỉ Phía Client:</strong> Tất cả thao tác mã hóa diễn ra
+              trong trình duyệt của bạn
+            </li>
+            <li>
+              <strong>Không Phụ Thuộc:</strong> Chỉ sử dụng Web Crypto API gốc -
+              không có thư viện bên ngoài
+            </li>
+            <li>
+              <strong>Xác Định:</strong> Cùng đầu vào luôn tạo ra cùng đầu ra
+            </li>
+            <li>
+              <strong>Mã Hóa Mạnh:</strong> PBKDF2 tiêu chuẩn công nghiệp với
+              100,000 lần lặp
+            </li>
+            <li>
+              <strong>Không Lưu Trữ:</strong> Không có gì được lưu vào
+              localStorage, cookies, hoặc bất kỳ nơi lưu trữ nào
+            </li>
+            <li>
+              <strong>Mã Nguồn Mở:</strong> Tất cả mã có thể xem và kiểm tra
+              được
+            </li>
+          </ul>
+        </section>
+
+        <section class="about-section">
+          <h2>✨ Tính Năng</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <h3>🔑 Mật Khẩu Chính</h3>
+              <p>
+                Một mật khẩu để quản lý tất cả - mật khẩu duy nhất bạn cần nhớ
+              </p>
+            </div>
+            <div class="feature-item">
+              <h3>🌶️ Khóa Bí Mật</h3>
+              <p>Lớp bảo mật bổ sung tùy chọn để bảo vệ thêm</p>
+            </div>
+            <div class="feature-item">
+              <h3>🔄 Kiểm Soát Phiên Bản</h3>
+              <p>Dễ dàng xoay vòng mật khẩu bằng cách tăng số phiên bản</p>
+            </div>
+            <div class="feature-item">
+              <h3>⚙️ Tùy Chỉnh</h3>
+              <p>Chọn độ dài mật khẩu và bộ ký tự để đáp ứng mọi yêu cầu</p>
+            </div>
+            <div class="feature-item">
+              <h3>📱 Di Động</h3>
+              <p>Hoạt động trên bất kỳ thiết bị nào có trình duyệt hiện đại</p>
+            </div>
+            <div class="feature-item">
+              <h3>🚫 Không Cần Internet</h3>
+              <p>
+                Hoạt động hoàn toàn ngoại tuyến - không cần kết nối internet
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>⚠️ Cân Nhắc Quan Trọng</h2>
+          <div class="warning-box">
+            <h3>Ưu Điểm:</h3>
+            <ul>
+              <li>
+                ✅ Không lưu trữ đám mây - mật khẩu chính không bao giờ rời khỏi
+                thiết bị của bạn
+              </li>
+              <li>✅ Hoạt động ngoại tuyến - không cần internet</li>
+              <li>✅ Di động - cùng mật khẩu trên mọi thiết bị</li>
+              <li>✅ Miễn phí và mã nguồn mở</li>
+              <li>✅ Không cần tài khoản hoặc đăng ký</li>
+            </ul>
+
+            <h3>Hạn Chế:</h3>
+            <ul>
+              <li>⚠️ Nếu quên mật khẩu chính, không có cách khôi phục</li>
+              <li>
+                ⚠️ Bạn phải nhớ mật khẩu chính, khóa bí mật và quy ước đặt tên
+                trang
+              </li>
+              <li>⚠️ Chỉ sử dụng trên thiết bị bạn tin tưởng</li>
+              <li>
+                ⚠️ Không phù hợp cho tài khoản chia sẻ nơi người khác cần mật
+                khẩu
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="about-section">
+          <h2>🌐 Tương Thích Trình Duyệt</h2>
+          <p>
+            Công cụ này hoạt động trên tất cả trình duyệt hiện đại hỗ trợ Web
+            Crypto API:
+          </p>
+          <ul class="browser-list">
+            <li>✅ Chrome 37+</li>
+            <li>✅ Firefox 34+</li>
+            <li>✅ Safari 11+</li>
+            <li>✅ Edge 79+</li>
+            <li>✅ Opera 24+</li>
+          </ul>
+        </section>
+
+        <section class="about-section">
+          <h2>📄 Giấy Phép & Quyền Riêng Tư</h2>
+          <p>
+            <strong>Quyền Riêng Tư:</strong> Công cụ này không thu thập dữ liệu,
+            không sử dụng phân tích và không thực hiện yêu cầu mạng. Mọi thứ
+            diễn ra cục bộ trong trình duyệt của bạn.
+          </p>
+          <p>
+            <strong>Giấy Phép:</strong> Đây là phần mềm miễn phí và mã nguồn mở.
+            Bạn có thể xem, sửa đổi và phân phối mã tự do.
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2>💬 Phản Hồi & Hỗ Trợ</h2>
+          <p>
+            Công cụ này được cung cấp nguyên trạng cho mục đích sử dụng cá nhân.
+            Mặc dù chúng tôi cố gắng đảm bảo bảo mật và độ tin cậy, vui lòng sử
+            dụng theo quyết định của riêng bạn và luôn duy trì bản sao lưu của
+            các mật khẩu quan trọng.
+          </p>
+        </section>
+      </div>
+
+      <footer>
+        <p id="footer-text-en">
+          All operations are performed locally in your browser. No data is sent
+          to any server.
+        </p>
+        <p id="footer-text-vi" style="display: none">
+          Tất cả thao tác được thực hiện cục bộ trong trình duyệt của bạn. Không
+          có dữ liệu nào được gửi đến máy chủ.
+        </p>
+        <div class="github-link">
+          <a
+            href="https://github.com/kinyias/password-in-one"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span id="github-text-en">⭐ View on GitHub</span>
+            <span id="github-text-vi" style="display: none"
+              >⭐ Xem trên GitHub</span
+            >
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Language toggle functionality
+      const langEn = document.getElementById('langEn');
+      const langVi = document.getElementById('langVi');
+      const contentEn = document.getElementById('content-en');
+      const contentVi = document.getElementById('content-vi');
+      const footerEn = document.getElementById('footer-text-en');
+      const footerVi = document.getElementById('footer-text-vi');
+      const githubEn = document.getElementById('github-text-en');
+      const githubVi = document.getElementById('github-text-vi');
+
+      langEn.addEventListener('click', function () {
+        contentEn.style.display = 'block';
+        contentVi.style.display = 'none';
+        footerEn.style.display = 'block';
+        footerVi.style.display = 'none';
+        githubEn.style.display = 'inline';
+        githubVi.style.display = 'none';
+        langEn.classList.add('active');
+        langVi.classList.remove('active');
+      });
+
+      langVi.addEventListener('click', function () {
+        contentEn.style.display = 'none';
+        contentVi.style.display = 'block';
+        footerEn.style.display = 'none';
+        footerVi.style.display = 'block';
+        githubEn.style.display = 'none';
+        githubVi.style.display = 'inline';
+        langVi.classList.add('active');
+        langEn.classList.remove('active');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Guide - Password Derivation Tool</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📖 User Guide</h1>
+        <div class="language-toggle">
+          <button id="langEn" class="lang-btn active">English</button>
+          <button id="langVi" class="lang-btn">Tiếng Việt</button>
+        </div>
+      </header>
+
+      <nav class="nav-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="guide.html" class="active">📖 Guide</a>
+        <a href="about.html">ℹ️ About</a>
+      </nav>
+
+      <!-- English Content -->
+      <div id="content-en" class="guide-content">
+        <section class="guide-section">
+          <h2>🎯 What is This Tool?</h2>
+          <p>
+            The Password Derivation Tool generates strong, unique passwords for
+            each of your accounts using a single master password. It uses
+            cryptographic algorithms to create deterministic passwords - meaning
+            the same inputs will always produce the same password.
+          </p>
+        </section>
+
+        <section class="guide-section">
+          <h2>🚀 How to Use</h2>
+
+          <div class="step">
+            <h3>Step 1: Enter Your Master Password</h3>
+            <p>
+              Choose a strong master password that you can remember. This is the
+              only password you need to memorize. Never use this master password
+              on any website - it's only for generating other passwords.
+            </p>
+            <div class="example">
+              <strong>Example:</strong> "MySecretMaster2026!"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Step 2: Add a Secret Key (Optional)</h3>
+            <p>
+              For extra security, you can add a secret key. This acts as an
+              additional layer of protection. If someone discovers your master
+              password, they still can't generate your passwords without the
+              secret key.
+            </p>
+            <div class="example">
+              <strong>Example:</strong> "ExtraSecretPepper123"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Step 3: Enter Site/Application Name</h3>
+            <p>
+              Type the name of the website or application you're creating a
+              password for. Use a consistent format for each site.
+            </p>
+            <div class="example">
+              <strong>Examples:</strong> "facebook.com", "gmail", "github.com"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Step 4: Set Version (Optional)</h3>
+            <p>
+              The version field allows you to rotate passwords. If you need to
+              change a password, just increment the version (v1 → v2).
+            </p>
+            <div class="example">
+              <strong>Default:</strong> v1<br />
+              <strong>After rotation:</strong> v2, v3, etc.
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Step 5: Choose Password Options</h3>
+            <p>
+              Select your desired password length (12, 16, 20, or custom) and
+              which character types to include (uppercase, lowercase, numbers,
+              special characters).
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>Step 6: Generate & Copy</h3>
+            <p>
+              Click "Generate Password" to create your password, then use the
+              copy button to copy it to your clipboard. Use "Clear All" when
+              you're done to wipe all data.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section">
+          <h2>💡 Best Practices</h2>
+          <ul class="tips-list">
+            <li>
+              <strong>Use a strong master password:</strong> At least 12
+              characters with mixed case, numbers, and symbols
+            </li>
+            <li>
+              <strong>Keep it consistent:</strong> Always use the same site name
+              format (e.g., always "facebook.com", not sometimes "facebook")
+            </li>
+            <li>
+              <strong>Remember your inputs:</strong> Write down your master
+              password and secret key in a safe place (not digitally)
+            </li>
+            <li>
+              <strong>Use the version field:</strong> When you need to change a
+              password, increment the version instead of changing your master
+              password
+            </li>
+            <li>
+              <strong>Clear after use:</strong> Always click "Clear All" when
+              you're done, especially on shared computers
+            </li>
+            <li>
+              <strong>Backup your settings:</strong> Remember your master
+              password, secret key, and site naming convention
+            </li>
+          </ul>
+        </section>
+
+        <section class="guide-section">
+          <h2>🔒 Security Features</h2>
+          <ul class="tips-list">
+            <li>
+              <strong>100% Client-Side:</strong> All processing happens in your
+              browser - no data is sent anywhere
+            </li>
+            <li>
+              <strong>No Storage:</strong> Nothing is saved to your device or
+              browser
+            </li>
+            <li>
+              <strong>PBKDF2 Encryption:</strong> Uses industry-standard
+              cryptography with 100,000 iterations
+            </li>
+            <li>
+              <strong>Deterministic:</strong> Same inputs always produce the
+              same password
+            </li>
+            <li>
+              <strong>No Dependencies:</strong> No external libraries or
+              services required
+            </li>
+          </ul>
+        </section>
+
+        <section class="guide-section">
+          <h2>❓ FAQ</h2>
+
+          <div class="faq-item">
+            <h3>Q: What if I forget my master password?</h3>
+            <p>
+              A: Unfortunately, there's no way to recover it. That's why it's
+              important to write it down in a safe place.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Q: Can I use this on multiple devices?</h3>
+            <p>
+              A: Yes! As long as you use the same inputs (master password,
+              secret key, site name, version), you'll get the same password on
+              any device.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Q: Is this safe to use?</h3>
+            <p>
+              A: Yes, when used properly. The tool uses strong cryptography and
+              doesn't store or transmit any data. However, only use it on
+              devices you trust.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>Q: What if a website requires me to change my password?</h3>
+            <p>
+              A: Simply increment the version field (v1 → v2) and generate a new
+              password.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Vietnamese Content -->
+      <div id="content-vi" class="guide-content" style="display: none">
+        <section class="guide-section">
+          <h2>🎯 Công Cụ Này Là Gì?</h2>
+          <p>
+            Công cụ Tạo Mật Khẩu giúp tạo ra các mật khẩu mạnh và độc nhất cho
+            mỗi tài khoản của bạn chỉ từ một mật khẩu chính. Nó sử dụng thuật
+            toán mã hóa để tạo mật khẩu xác định - nghĩa là cùng đầu vào sẽ luôn
+            tạo ra cùng mật khẩu.
+          </p>
+        </section>
+
+        <section class="guide-section">
+          <h2>🚀 Cách Sử Dụng</h2>
+
+          <div class="step">
+            <h3>Bước 1: Nhập Mật Khẩu Chính</h3>
+            <p>
+              Chọn một mật khẩu chính mạnh mà bạn có thể nhớ. Đây là mật khẩu
+              duy nhất bạn cần ghi nhớ. Không bao giờ sử dụng mật khẩu chính này
+              trên bất kỳ trang web nào - nó chỉ để tạo các mật khẩu khác.
+            </p>
+            <div class="example">
+              <strong>Ví dụ:</strong> "MatKhauChinh2026!"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Bước 2: Thêm Khóa Bí Mật (Tùy Chọn)</h3>
+            <p>
+              Để tăng cường bảo mật, bạn có thể thêm khóa bí mật. Đây là lớp bảo
+              vệ bổ sung. Nếu ai đó phát hiện mật khẩu chính của bạn, họ vẫn
+              không thể tạo mật khẩu của bạn nếu không có khóa bí mật.
+            </p>
+            <div class="example">
+              <strong>Ví dụ:</strong> "KhoaBiMatBoSung123"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Bước 3: Nhập Tên Trang Web/Ứng Dụng</h3>
+            <p>
+              Gõ tên trang web hoặc ứng dụng bạn đang tạo mật khẩu. Sử dụng định
+              dạng nhất quán cho mỗi trang.
+            </p>
+            <div class="example">
+              <strong>Ví dụ:</strong> "facebook.com", "gmail", "github.com"
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Bước 4: Đặt Phiên Bản (Tùy Chọn)</h3>
+            <p>
+              Trường phiên bản cho phép bạn xoay vòng mật khẩu. Nếu cần thay đổi
+              mật khẩu, chỉ cần tăng phiên bản (v1 → v2).
+            </p>
+            <div class="example">
+              <strong>Mặc định:</strong> v1<br />
+              <strong>Sau khi xoay:</strong> v2, v3, v.v.
+            </div>
+          </div>
+
+          <div class="step">
+            <h3>Bước 5: Chọn Tùy Chọn Mật Khẩu</h3>
+            <p>
+              Chọn độ dài mật khẩu mong muốn (12, 16, 20, hoặc tùy chỉnh) và
+              loại ký tự nào sẽ bao gồm (chữ hoa, chữ thường, số, ký tự đặc
+              biệt).
+            </p>
+          </div>
+
+          <div class="step">
+            <h3>Bước 6: Tạo & Sao Chép</h3>
+            <p>
+              Nhấp "Generate Password" để tạo mật khẩu, sau đó sử dụng nút sao
+              chép để sao chép vào clipboard. Sử dụng "Clear All" khi hoàn tất
+              để xóa tất cả dữ liệu.
+            </p>
+          </div>
+        </section>
+
+        <section class="guide-section">
+          <h2>💡 Thực Hành Tốt Nhất</h2>
+          <ul class="tips-list">
+            <li>
+              <strong>Sử dụng mật khẩu chính mạnh:</strong> Ít nhất 12 ký tự với
+              chữ hoa, chữ thường, số và ký hiệu
+            </li>
+            <li>
+              <strong>Giữ nhất quán:</strong> Luôn sử dụng cùng định dạng tên
+              trang (ví dụ: luôn là "facebook.com", không đôi khi là "facebook")
+            </li>
+            <li>
+              <strong>Ghi nhớ đầu vào:</strong> Viết ra mật khẩu chính và khóa
+              bí mật ở nơi an toàn (không phải kỹ thuật số)
+            </li>
+            <li>
+              <strong>Sử dụng trường phiên bản:</strong> Khi cần thay đổi mật
+              khẩu, tăng phiên bản thay vì thay đổi mật khẩu chính
+            </li>
+            <li>
+              <strong>Xóa sau khi sử dụng:</strong> Luôn nhấp "Clear All" khi
+              hoàn tất, đặc biệt trên máy tính dùng chung
+            </li>
+            <li>
+              <strong>Sao lưu cài đặt:</strong> Ghi nhớ mật khẩu chính, khóa bí
+              mật và quy ước đặt tên trang
+            </li>
+          </ul>
+        </section>
+
+        <section class="guide-section">
+          <h2>🔒 Tính Năng Bảo Mật</h2>
+          <ul class="tips-list">
+            <li>
+              <strong>100% Phía Client:</strong> Tất cả xử lý diễn ra trong
+              trình duyệt - không có dữ liệu được gửi đi
+            </li>
+            <li>
+              <strong>Không Lưu Trữ:</strong> Không có gì được lưu vào thiết bị
+              hoặc trình duyệt của bạn
+            </li>
+            <li>
+              <strong>Mã Hóa PBKDF2:</strong> Sử dụng mã hóa tiêu chuẩn công
+              nghiệp với 100,000 lần lặp
+            </li>
+            <li>
+              <strong>Xác Định:</strong> Cùng đầu vào luôn tạo ra cùng mật khẩu
+            </li>
+            <li>
+              <strong>Không Phụ Thuộc:</strong> Không cần thư viện hoặc dịch vụ
+              bên ngoài
+            </li>
+          </ul>
+        </section>
+
+        <section class="guide-section">
+          <h2>❓ Câu Hỏi Thường Gặp</h2>
+
+          <div class="faq-item">
+            <h3>H: Nếu tôi quên mật khẩu chính thì sao?</h3>
+            <p>
+              Đ: Rất tiếc, không có cách nào khôi phục nó. Đó là lý do tại sao
+              quan trọng phải viết nó ra ở nơi an toàn.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>H: Tôi có thể sử dụng trên nhiều thiết bị không?</h3>
+            <p>
+              Đ: Có! Miễn là bạn sử dụng cùng đầu vào (mật khẩu chính, khóa bí
+              mật, tên trang, phiên bản), bạn sẽ nhận được cùng mật khẩu trên
+              bất kỳ thiết bị nào.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>H: Công cụ này có an toàn không?</h3>
+            <p>
+              Đ: Có, khi sử dụng đúng cách. Công cụ sử dụng mã hóa mạnh và không
+              lưu trữ hoặc truyền bất kỳ dữ liệu nào. Tuy nhiên, chỉ sử dụng
+              trên thiết bị bạn tin tưởng.
+            </p>
+          </div>
+
+          <div class="faq-item">
+            <h3>H: Nếu trang web yêu cầu tôi thay đổi mật khẩu thì sao?</h3>
+            <p>
+              Đ: Chỉ cần tăng trường phiên bản (v1 → v2) và tạo mật khẩu mới.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <p id="footer-text-en">
+          All operations are performed locally in your browser. No data is sent
+          to any server.
+        </p>
+        <p id="footer-text-vi" style="display: none">
+          Tất cả thao tác được thực hiện cục bộ trong trình duyệt của bạn. Không
+          có dữ liệu nào được gửi đến máy chủ.
+        </p>
+        <div class="github-link">
+          <a
+            href="https://github.com/kinyias/password-in-one"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span id="github-text-en">⭐ View on GitHub</span>
+            <span id="github-text-vi" style="display: none"
+              >⭐ Xem trên GitHub</span
+            >
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Language toggle functionality
+      const langEn = document.getElementById('langEn');
+      const langVi = document.getElementById('langVi');
+      const contentEn = document.getElementById('content-en');
+      const contentVi = document.getElementById('content-vi');
+      const footerEn = document.getElementById('footer-text-en');
+      const footerVi = document.getElementById('footer-text-vi');
+      const githubEn = document.getElementById('github-text-en');
+      const githubVi = document.getElementById('github-text-vi');
+
+      langEn.addEventListener('click', function () {
+        contentEn.style.display = 'block';
+        contentVi.style.display = 'none';
+        footerEn.style.display = 'block';
+        footerVi.style.display = 'none';
+        githubEn.style.display = 'inline';
+        githubVi.style.display = 'none';
+        langEn.classList.add('active');
+        langVi.classList.remove('active');
+      });
+
+      langVi.addEventListener('click', function () {
+        contentEn.style.display = 'none';
+        contentVi.style.display = 'block';
+        footerEn.style.display = 'none';
+        footerVi.style.display = 'block';
+        githubEn.style.display = 'none';
+        githubVi.style.display = 'inline';
+        langVi.classList.add('active');
+        langEn.classList.remove('active');
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Derivation Tool</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🔐 Password Derivation Tool</h1>
+        <p class="subtitle" id="subtitle-en">
+          Generate deterministic, secure passwords from a master password
+        </p>
+        <p class="subtitle" id="subtitle-vi" style="display: none">
+          Tạo mật khẩu an toàn, xác định từ mật khẩu chính
+        </p>
+        <div class="language-toggle">
+          <button id="langEn" class="lang-btn active">English</button>
+          <button id="langVi" class="lang-btn">Tiếng Việt</button>
+        </div>
+      </header>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active"
+          >🏠 <span class="nav-text-en">Home</span
+          ><span class="nav-text-vi" style="display: none">Trang chủ</span></a
+        >
+        <a href="guide.html"
+          >📖 <span class="nav-text-en">Guide</span
+          ><span class="nav-text-vi" style="display: none">Hướng dẫn</span></a
+        >
+        <a href="about.html"
+          >ℹ️ <span class="nav-text-en">About</span
+          ><span class="nav-text-vi" style="display: none">Giới thiệu</span></a
+        >
+      </nav>
+
+      <div class="warning-box" id="warning-en">
+        <strong>⚠️ Security Warning:</strong> Do not enter your master password
+        on untrusted devices.
+        <br />
+        <strong>ℹ️ Note:</strong> Same input always produces the same password.
+      </div>
+
+      <div class="warning-box" id="warning-vi" style="display: none">
+        <strong>⚠️ Cảnh Báo Bảo Mật:</strong> Không nhập mật khẩu chính của bạn
+        trên thiết bị không tin cậy.
+        <br />
+        <strong>ℹ️ Lưu Ý:</strong> Cùng đầu vào luôn tạo ra cùng mật khẩu.
+      </div>
+
+      <form id="passwordForm" autocomplete="off">
+        <!-- Master Password -->
+        <div class="form-group">
+          <label for="masterPassword"
+            >Master Password <span class="required">*</span></label
+          >
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="masterPassword"
+              name="masterPassword"
+              autocomplete="off"
+              required
+              placeholder="Enter your master password"
+            />
+            <button
+              type="button"
+              class="toggle-visibility"
+              data-target="masterPassword"
+              aria-label="Toggle password visibility"
+            >
+              <span class="eye-icon">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Secret Key (Optional) -->
+        <div class="form-group">
+          <label for="secretKey"
+            >Secret Key <span class="optional">(optional)</span></label
+          >
+          <div class="input-wrapper">
+            <input
+              type="password"
+              id="secretKey"
+              name="secretKey"
+              autocomplete="off"
+              placeholder="Additional security layer (pepper)"
+            />
+            <button
+              type="button"
+              class="toggle-visibility"
+              data-target="secretKey"
+              aria-label="Toggle secret key visibility"
+            >
+              <span class="eye-icon">👁️</span>
+            </button>
+          </div>
+          <small class="help-text"
+            >Acts as a "pepper" to increase security</small
+          >
+        </div>
+
+        <!-- Site/Application Name -->
+        <div class="form-group">
+          <label for="siteName"
+            >Site / Application Name <span class="required">*</span></label
+          >
+          <input
+            type="text"
+            id="siteName"
+            name="siteName"
+            autocomplete="off"
+            required
+            placeholder="e.g., facebook.com, gmail, github"
+          />
+          <small class="help-text">Examples: facebook.com, gmail, github</small>
+        </div>
+
+        <!-- Version -->
+        <div class="form-group">
+          <label for="version"
+            >Version <span class="optional">(optional)</span></label
+          >
+          <input
+            type="text"
+            id="version"
+            name="version"
+            autocomplete="off"
+            value="v1"
+            placeholder="v1"
+          />
+          <small class="help-text">Used to rotate passwords when needed</small>
+        </div>
+
+        <!-- Password Options -->
+        <div class="form-group">
+          <label>Password Length</label>
+          <div class="length-options">
+            <label class="radio-label">
+              <input type="radio" name="length" value="12" checked />
+              <span>12</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="length" value="16" />
+              <span>16</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="length" value="20" />
+              <span>20</span>
+            </label>
+            <label class="radio-label custom-length-label">
+              <input type="radio" name="length" value="custom" />
+              <span>Custom</span>
+            </label>
+            <input
+              type="number"
+              id="customLength"
+              min="8"
+              max="128"
+              value="24"
+              disabled
+              class="custom-length-input"
+            />
+          </div>
+        </div>
+
+        <!-- Character Sets -->
+        <div class="form-group">
+          <label>Character Sets</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="uppercase" checked />
+              <span>Uppercase (A-Z)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="lowercase" checked />
+              <span>Lowercase (a-z)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="numbers" checked />
+              <span>Numbers (0-9)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="special" checked />
+              <span>Special (!@#$%^&*)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button type="submit" class="btn btn-primary">Generate Password</button>
+      </form>
+
+      <!-- Output Section -->
+      <div id="outputSection" class="output-section" style="display: none">
+        <div class="form-group">
+          <label for="generatedPassword">Generated Password</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="generatedPassword"
+              readonly
+              class="generated-password"
+            />
+            <button
+              type="button"
+              id="copyBtn"
+              class="btn-icon"
+              aria-label="Copy to clipboard"
+            >
+              📋
+            </button>
+          </div>
+          <div id="copyFeedback" class="copy-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Clear All Button -->
+      <button type="button" id="clearBtn" class="btn btn-secondary">
+        Clear All
+      </button>
+
+      <footer>
+        <p id="footer-en">
+          All operations are performed locally in your browser. No data is sent
+          to any server.
+        </p>
+        <p id="footer-vi" style="display: none">
+          Tất cả thao tác được thực hiện cục bộ trong trình duyệt của bạn. Không
+          có dữ liệu nào được gửi đến máy chủ.
+        </p>
+        <div class="github-link">
+          <a
+            href="https://github.com/kinyias/password-in-one"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span id="github-text-en">⭐ View on GitHub</span>
+            <span id="github-text-vi" style="display: none"
+              >⭐ Xem trên GitHub</span
+            >
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+      // Language toggle for index page
+      const langEnBtn = document.getElementById('langEn');
+      const langViBtn = document.getElementById('langVi');
+
+      langEnBtn.addEventListener('click', function () {
+        document.getElementById('subtitle-en').style.display = 'block';
+        document.getElementById('subtitle-vi').style.display = 'none';
+        document.getElementById('warning-en').style.display = 'block';
+        document.getElementById('warning-vi').style.display = 'none';
+        document.getElementById('footer-en').style.display = 'block';
+        document.getElementById('footer-vi').style.display = 'none';
+        document.getElementById('github-text-en').style.display = 'inline';
+        document.getElementById('github-text-vi').style.display = 'none';
+        document
+          .querySelectorAll('.nav-text-en')
+          .forEach((el) => (el.style.display = 'inline'));
+        document
+          .querySelectorAll('.nav-text-vi')
+          .forEach((el) => (el.style.display = 'none'));
+        langEnBtn.classList.add('active');
+        langViBtn.classList.remove('active');
+      });
+
+      langViBtn.addEventListener('click', function () {
+        document.getElementById('subtitle-en').style.display = 'none';
+        document.getElementById('subtitle-vi').style.display = 'block';
+        document.getElementById('warning-en').style.display = 'none';
+        document.getElementById('warning-vi').style.display = 'block';
+        document.getElementById('footer-en').style.display = 'none';
+        document.getElementById('footer-vi').style.display = 'block';
+        document.getElementById('github-text-en').style.display = 'none';
+        document.getElementById('github-text-vi').style.display = 'inline';
+        document
+          .querySelectorAll('.nav-text-en')
+          .forEach((el) => (el.style.display = 'none'));
+        document
+          .querySelectorAll('.nav-text-vi')
+          .forEach((el) => (el.style.display = 'inline'));
+        langViBtn.classList.add('active');
+        langEnBtn.classList.remove('active');
+      });
+    </script>
+  </body>
+</html>
