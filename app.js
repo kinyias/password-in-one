@@ -15,6 +15,7 @@ const outputSection = document.getElementById('outputSection');
 const generatedPasswordInput = document.getElementById('generatedPassword');
 const copyBtn = document.getElementById('copyBtn');
 const clearBtn = document.getElementById('clearBtn');
+const exportBtn = document.getElementById('exportBtn');
 const copyFeedback = document.getElementById('copyFeedback');
 
 // Character set checkboxes
@@ -190,6 +191,77 @@ clearBtn.addEventListener('click', function () {
 
   // Focus on first input
   masterPasswordInput.focus();
+});
+
+// Export to JSON
+exportBtn.addEventListener('click', function () {
+  // Check if password has been generated
+  if (!generatedPasswordInput.value) {
+    alert('Please generate a password first before exporting.');
+    return;
+  }
+
+  // Get current form values
+  const siteName = siteNameInput.value.trim();
+  const version = versionInput.value.trim() || 'v1';
+
+  // Get password length
+  const lengthRadio = document.querySelector('input[name="length"]:checked');
+  const length =
+    lengthRadio.value === 'custom'
+      ? parseInt(customLengthInput.value)
+      : parseInt(lengthRadio.value);
+
+  // Get character set selections
+  const characterSets = {
+    uppercase: uppercaseCheckbox.checked,
+    lowercase: lowercaseCheckbox.checked,
+    numbers: numbersCheckbox.checked,
+    special: specialCheckbox.checked,
+  };
+
+  // Create export data object
+  // NOTE: We do NOT export master password or secret key for security reasons
+  const exportData = {
+    siteName: siteName,
+    version: version,
+    passwordLength: length,
+    characterSets: characterSets,
+    generatedPassword: generatedPasswordInput.value,
+    exportDate: new Date().toISOString(),
+    note: 'Master password and secret key are NOT included for security reasons',
+  };
+
+  // Convert to JSON string with pretty formatting
+  const jsonString = JSON.stringify(exportData, null, 2);
+
+  // Create a blob and download link
+  const blob = new Blob([jsonString], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  // Set filename with site name and timestamp
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  const filename = `password-${siteName.replace(/[^a-z0-9]/gi, '_')}-${timestamp}.json`;
+
+  link.href = url;
+  link.download = filename;
+
+  // Trigger download
+  document.body.appendChild(link);
+  link.click();
+
+  // Cleanup
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+
+  // Show feedback
+  copyFeedback.textContent = '✓ Exported to JSON file!';
+  copyFeedback.style.color = 'var(--success-color)';
+
+  setTimeout(() => {
+    copyFeedback.textContent = '';
+  }, 3000);
 });
 
 // Clear all on page load/refresh

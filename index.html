@@ -217,11 +217,22 @@
           </div>
           <div id="copyFeedback" class="copy-feedback"></div>
         </div>
+
+        <!-- Export Button -->
+        <div class="export-section">
+          <button type="button" id="exportBtn" class="btn btn-export">
+            <span id="export-text-en">📥 Export to JSON</span>
+            <span id="export-text-vi" style="display: none"
+              >📥 Xuất ra JSON</span
+            >
+          </button>
+        </div>
       </div>
 
       <!-- Clear All Button -->
       <button type="button" id="clearBtn" class="btn btn-secondary">
-        Clear All
+        <span id="clear-text-en">Clear All</span>
+        <span id="clear-text-vi" style="display: none">Xóa Tất Cả</span>
       </button>
 
       <footer>
@@ -263,6 +274,10 @@
         document.getElementById('footer-vi').style.display = 'none';
         document.getElementById('github-text-en').style.display = 'inline';
         document.getElementById('github-text-vi').style.display = 'none';
+        document.getElementById('export-text-en').style.display = 'inline';
+        document.getElementById('export-text-vi').style.display = 'none';
+        document.getElementById('clear-text-en').style.display = 'inline';
+        document.getElementById('clear-text-vi').style.display = 'none';
         document
           .querySelectorAll('.nav-text-en')
           .forEach((el) => (el.style.display = 'inline'));
@@ -282,6 +297,10 @@
         document.getElementById('footer-vi').style.display = 'block';
         document.getElementById('github-text-en').style.display = 'none';
         document.getElementById('github-text-vi').style.display = 'inline';
+        document.getElementById('export-text-en').style.display = 'none';
+        document.getElementById('export-text-vi').style.display = 'inline';
+        document.getElementById('clear-text-en').style.display = 'none';
+        document.getElementById('clear-text-vi').style.display = 'inline';
         document
           .querySelectorAll('.nav-text-en')
           .forEach((el) => (el.style.display = 'none'));

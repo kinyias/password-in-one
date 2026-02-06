@@ -15,6 +15,7 @@ A secure, client-side password generation tool that creates deterministic passwo
 - **No Dependencies**: Uses only native Web Crypto API
 - **Offline Capable**: Works without internet connection
 - **Light Theme**: Clean, modern interface with light color scheme
+- **Export to JSON**: Export password configuration to JSON file (excludes master password for security)
 
 ## 📁 Files
 

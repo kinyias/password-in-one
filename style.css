@@ -362,6 +362,34 @@ input[type='password']::placeholder {
   transform: scale(1.05);
 }
 
+.btn-export {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: var(--success-color);
+  color: white;
+  margin-top: 15px;
+}
+
+.btn-export:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-export:active {
+  transform: translateY(0);
+}
+
+.export-section {
+  margin-top: 15px;
+}
+
 /* ===== Output Section ===== */
 .output-section {
   margin-top: 30px;
